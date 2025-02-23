@@ -58,7 +58,6 @@ const Sidebar = () => {
 
 
 
-            {/* Modal */}
             {isOpen && (
                 <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
                     <div className="bg-white p-6 rounded-lg shadow-lg w-[50rem] max-h-[80vh] overflow-hidden">
