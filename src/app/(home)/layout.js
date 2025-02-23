@@ -1,5 +1,6 @@
 import { Inter } from 'next/font/google'
-import './globals.css'
+import '../globals.css'
+import Sidebar from '@/Components/Sidebar'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -11,7 +12,10 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className="bg-gray-200 h-screen flex gap-3">
+        <Sidebar/>
+        {children}
+      </body>
     </html>
   )
 }
