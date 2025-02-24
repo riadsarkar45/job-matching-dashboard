@@ -9,6 +9,8 @@ const Sidebar = () => {
     const hasFetched = useRef(false);
     const [skills, setSkills] = useState([]);  // Skills fetched from API
     const [selectedSkills, setSelectedSkills] = useState([]);
+    const { handleSkills } = useContext(Skills);
+
     useEffect(() => {
         const storedSkills = JSON.parse(localStorage.getItem("selectedSkills") || "[]");
         setSelectedSkills(storedSkills);
@@ -35,11 +37,13 @@ const Sidebar = () => {
             localStorage.setItem("selectedSkills", JSON.stringify(updatedSkills));
             return updatedSkills;
         });
+        handleSkills();
     };
 
     return (
-        <div className="flex">
-            <div className="fixed top-0 left-0 w-[18rem] h-screen bg-slate-50 p-2 overflow-y-hidden">
+        <div className="lg:flex">
+            {/* Sidebar: hidden on small screens, visible on large */}
+            <div className="fixed top-0 left-0 lg:w-[18rem] h-screen bg-slate-50 p-2 overflow-y-hidden lg:block hidden">
                 <div className="mb-4 cursor-pointer">
                     <h2>Dashboard</h2>
                 </div>
@@ -56,8 +60,7 @@ const Sidebar = () => {
                 </div>
             </div>
 
-
-
+            {/* Modal */}
             {isOpen && (
                 <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
                     <div className="bg-white p-6 rounded-lg shadow-lg w-[50rem] max-h-[80vh] overflow-hidden">
@@ -80,13 +83,12 @@ const Sidebar = () => {
                                 className="px-4 py-2 bg-gray-300 rounded"
                                 onClick={() => setIsOpen(false)}
                             >
-                                Close
+                                Ok
                             </button>
                         </div>
                     </div>
                 </div>
             )}
-
         </div>
     );
 };

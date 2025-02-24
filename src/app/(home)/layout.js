@@ -13,13 +13,14 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${inter.className} bg-gray-200 h-screen flex`}>
+      <body className={`${inter.className} bg-gray-200 h-screen lg:flex`}>
         {/* Sidebar */}
-        <Sidebar className="fixed top-0 left-0 w-[18rem] h-screen bg-slate-50 p-2 overflow-y-auto" />
+
 
         {/* Main Content */}
-        <div className="ml-[18rem] w-full p-4 overflow-y-auto">
+        <div className="lg:ml-[18rem] w-full p-4 overflow-y-auto">
           <Skill>
+            <Sidebar className="fixed top-0 left-0 lg:w-[18rem] h-screen bg-slate-50 p-2 overflow-y-auto" />
             {children}
           </Skill>
         </div>

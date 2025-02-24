@@ -1,12 +1,13 @@
 'use client';
+import Loader from '@/Components/Hooks/Loader';
 import JobsCard from '@/Components/jobs';
 import axios from 'axios';
 import { useEffect, useRef, useState } from 'react';
 
 export default function Home() {
-  const [jobs, setJobs] = useState([]); // Filtered jobs list
-  const [allJobs, setAllJobs] = useState([]); // Original jobs list
-  const [isSearched, setIsSearched] = useState(false);
+  const [jobs, setJobs] = useState([]); 
+  const [allJobs, setAllJobs] = useState([]);
+const [isLoading, setIsLoading] = useState(true);
   const hasFetched = useRef(false);
 
   useEffect(() => {
@@ -14,8 +15,9 @@ export default function Home() {
     hasFetched.current = true;
     axios.get('https://api.jsonbin.io/v3/b/67ba1017e41b4d34e4985332')
       .then(res => {
-        setAllJobs(res.data.record); // Store original jobs data
-        setJobs(res.data.record); // Set filtered jobs initially to all jobs
+        setAllJobs(res.data.record); 
+        setJobs(res.data.record); 
+        setIsLoading(false)
       });
   }, []);
 
@@ -47,18 +49,20 @@ export default function Home() {
     
   }
 
+  if(isLoading) return <Loader/>
+
   return (
     <div className='w-full'>
-      <div className='grid grid-cols-3 mt-2 gap-2'>
-        <input onChange={(e) => handleJobSearch(e.target.value, 'jobTitle')} className='w-[18rem] p-2 rounded-sm' type='text' placeholder='Job Title' />
+      <div className='grid mb-7 grid-cols-3 mt-2 gap-2 bg-white p-3 rounded-md '>
+        <input onChange={(e) => handleJobSearch(e.target.value, 'jobTitle')} className='lg:w-[18rem] outline-none border-2 border-gray-100 p-2 rounded-sm' type='text' placeholder='Job Title' />
 
-        <select onChange={(e) => handleJobSearch(e.target.value, 'location')}   className='w-[18rem] p-2 rounded-sm' type='text' placeholder='Location'>
+        <select onChange={(e) => handleJobSearch(e.target.value, 'location')}   className='lg:w-[18rem] outline-none border-2 border-gray-100 p-2 rounded-sm' type='text' placeholder='Location'>
           <option defaultChecked>Select Location</option>
           <option>Remote</option>
           <option>Hybrid</option>
           <option>On-site</option>
         </select>
-        <input onChange={(e) => handleJobSearch(e.target.value, 'company')} className='w-[18rem] p-2 rounded-sm' type='text' placeholder='Company Name' />
+        <input onChange={(e) => handleJobSearch(e.target.value, 'company')} className='lg:w-[18rem] outline-none border-2 border-gray-100 p-2 rounded-sm' type='text' placeholder='Company Name' />
       </div>
       {
         jobs?.map((job, i) => <JobsCard key={i} jobs={job} />)

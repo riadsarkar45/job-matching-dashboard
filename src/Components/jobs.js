@@ -5,14 +5,13 @@ import { Skills } from './Hooks/Global/jobs';
 const JobsCard = ({ jobs }) => {
     const { title, company, location, salary, id, requiredSkills } = jobs || {};
     const { skillsFromStorage } = useContext(Skills) || { skillsFromStorage: [] };
-
     const matchedSkill = requiredSkills.filter(skill => skillsFromStorage.includes(skill));
 
     const percentage = requiredSkills.length > 0 ? (matchedSkill.length / requiredSkills.length) * 100 : 0;
 
     return (
         <Link href={`detail/${id}`}>
-            <div className='bg-gray-50 mt-3 p-4 text-gray-800 rounded-sm'>
+            <div className='bg-gray-50 mt-3 p-4 text-gray-800 rounded-sm mb-4'>
                 <div className='flex justify-between'>
                     <div className='mb-3'>
                         <h2>{title}</h2>
