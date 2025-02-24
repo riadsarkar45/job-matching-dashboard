@@ -27,7 +27,6 @@ const JobsCard = ({ jobs }) => {
                     </div>
                 </div>
 
-                {/* Progress Bar */}
                 <div className="mt-3">
                     <div className="w-[20rem] bg-gray-300 rounded-full h-2">
                         <div 
