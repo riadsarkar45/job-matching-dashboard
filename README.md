@@ -4,16 +4,6 @@
 
 
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
 ## Features
 
  - Fetched data from jsonbin dynamic jobs api
