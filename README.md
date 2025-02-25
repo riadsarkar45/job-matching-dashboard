@@ -15,3 +15,12 @@
  - Added some filters fields user can find via job search @company name @Remote, @Onsite, @Hybrid and can be searched by company names.
  - Fetching jobs and skills globally
 
+
+ ## I am facing some deployment issues some design has changed after deploying to vercel please check on localhost
+
+  - Git clone
+  - Run npm i
+  - Run npm run dev
+  - Server Should running on http://localhost:3000/
+
+
